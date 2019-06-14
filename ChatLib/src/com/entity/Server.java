@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author TrongDuyDao
  */
-public class Server  implements Serializable {
+public class Server implements Serializable {
     
     private String host;
     private int port;

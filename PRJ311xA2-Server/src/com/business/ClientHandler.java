@@ -38,11 +38,12 @@ public class ClientHandler implements Runnable {
 
     @Override
     public void run() {
-        /*Handler connection for individual client connection*/
+        // Watch for individual connection
         try {
             dis = new DataInputStream(socket.getInputStream());
             dos = new DataOutputStream(socket.getOutputStream());
 
+            // Get user name and message
             while (true) {
                 Object line = dis.readUTF();
                 if (line != null) {
@@ -55,11 +56,14 @@ public class ClientHandler implements Runnable {
         }
     }
 
+    // Send the message to Client
     public void send(Object line) throws Exception {
-        /*send message to client*/
+
+        // Send to the client
         dos.writeUTF("Server:" + line.toString());
+
+        // Add message to the text area
         txtContent.append("\nMe:" + line);
     }
-
 
 }

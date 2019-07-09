@@ -8,6 +8,7 @@ package com.business;
 import com.entity.Client;
 import com.entity.Server;
 //import com.ui.ServerBox;
+//import com.ui.ServerBox;
 
 import java.io.DataInputStream;
 import java.net.ServerSocket;
@@ -27,7 +28,7 @@ public class ServerThread implements Runnable {
     private Socket socket;
 
     public ServerThread(Server chatServer) {
-        /*start the server and ready to receive connection from client*/
+        // Start the server and ready to receive connection from client
         this.chatServer = chatServer;
         try {
             server = new ServerSocket(chatServer.getPort());
@@ -38,7 +39,7 @@ public class ServerThread implements Runnable {
 
     @Override
     public void run() {
-        /*Wait for client's connection, accept the connection and handle the connection*/
+        // Wait for client's connection, accept the connection and handle the connection
         try {
             while (true) {
                 socket = server.accept();
@@ -47,8 +48,10 @@ public class ServerThread implements Runnable {
                 Client client = new Client();
 
                 if (username != null) {
+
                     client.setUsername(username);
                     client.setSocket(socket);
+
 //                    ServerBox.clients.addElement(client);
 
                     ClientHandler clientHandler = new ClientHandler(socket, client);
@@ -61,7 +64,7 @@ public class ServerThread implements Runnable {
 
     }
 
-    /*contain the list of ClientHandler */
+    // Contain the list of ClientHandler
     public static HashMap<String, ClientHandler> clients = new HashMap<>();
 
 }

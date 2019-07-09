@@ -29,24 +29,30 @@ public class ClientThread implements Runnable, Serializable {
 
     /*provide setter and getter here*/
 
+    /**
+     * Constructor, open a socket to server. This class implements Runnable,
+     * so we could start a thread with it
+     */
     public ClientThread(Server server, JTextArea txtContent) {
         try {
 
             this.server = server;
             this.txtContent = txtContent;
 
-            /*connect to server and get input/output stream here*/
             this.socket = new Socket(server.getHost(), server.getPort());
             this.dis = new DataInputStream(socket.getInputStream());
             this.dos = new DataOutputStream(socket.getOutputStream());
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
+    /**
+     * Will run automatically, watch for messages from server, and append to the textarea
+     */
     @Override
     public void run() {
-        /*receive message from server and output to txtContent*/
         try {
             while (true) {
                 Object line = dis.readUTF();
@@ -59,6 +65,9 @@ public class ClientThread implements Runnable, Serializable {
         }
     }
 
+    /**
+     * Send the message
+     */
     public void send(Object line) throws Exception {
         /*send a message line to server*/
         this.dos.writeUTF(line.toString());

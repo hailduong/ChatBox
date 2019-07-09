@@ -6,9 +6,9 @@
 //package com.ui;
 //
 //import com.business.ClientHandler;
+//import com.business.ServerThread;
 //
 ///**
-// *
 // * @author TrongDuyDao
 // */
 //public class ChatBox extends javax.swing.JDialog {
@@ -21,15 +21,27 @@
 //    private String username;
 //
 //    public void setUsername(String username) {
-//
+//        this.username = username;
+//        cs = ServerThread.clients.get(username);
+//        cs.setTxtContent(txtContent);
+//        new Thread(cs).start();
+//        setTitle("Chat with " + cs.getClient().getUsername());
 //    }
 //
 //
 //    public ChatBox(java.awt.Frame parent, boolean modal) {
 //        super(parent, modal);
 //        initComponents();
-//        server = (ServerBox)parent;
+//        server = (ServerBox) parent;
 //
+//    }
+//
+//    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {
+//        try {
+//            cs.send(txtMessage.getText());
+//        } catch (Exception ex) {
+//            System.out.println(ex);
+//        }
 //    }
 //
 //    /**
@@ -46,12 +58,12 @@
 //        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 //        getContentPane().setLayout(layout);
 //        layout.setHorizontalGroup(
-//            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-//            .addGap(0, 507, Short.MAX_VALUE)
+//                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//                        .addGap(0, 507, Short.MAX_VALUE)
 //        );
 //        layout.setVerticalGroup(
-//            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-//            .addGap(0, 393, Short.MAX_VALUE)
+//                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//                        .addGap(0, 393, Short.MAX_VALUE)
 //        );
 //
 //        pack();

@@ -7,11 +7,12 @@
 //
 //import com.business.ServerThread;
 //import com.entity.Client;
+//import com.entity.Server;
+//
 //import javax.swing.DefaultListModel;
 //
 //
 ///**
-// *
 // * @author TrongDuyDao
 // */
 //public class ServerBox extends javax.swing.JFrame {
@@ -23,6 +24,18 @@
 //
 //    public ServerBox() {
 //        initComponents();
+//        lstClients.setModel(clients);
+//
+//        if (serverThread == null) {
+//            try {
+//                Server server = new Server(SERVER_NAME, PORT);
+//                serverThread = new ServerThread(server);
+//                new Thread(serverThread).start();
+//            } catch (Exception ex) {
+//                ex.printStackTrace();
+//            }
+//        }
+//
 //
 //    }
 //
@@ -53,18 +66,18 @@
 //        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 //        getContentPane().setLayout(layout);
 //        layout.setHorizontalGroup(
-//            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-//            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-//                .addContainerGap()
-//                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-//                .addContainerGap(22, Short.MAX_VALUE))
+//                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+//                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+//                                .addContainerGap()
+//                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                                .addContainerGap(22, Short.MAX_VALUE))
 //        );
 //        layout.setVerticalGroup(
-//            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-//            .addGroup(layout.createSequentialGroup()
-//                .addContainerGap()
-//                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-//                .addGap(0, 19, Short.MAX_VALUE))
+//                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//                        .addGroup(layout.createSequentialGroup()
+//                                .addContainerGap()
+//                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                                .addGap(0, 19, Short.MAX_VALUE))
 //        );
 //
 //        pack();
@@ -73,10 +86,15 @@
 //    private void lstClientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstClientsMouseClicked
 //        // TODO add your handling code here:
 //        //when users double click on an item of list, open a new dialog for chatting
-//        throw new UnsupportedOperationException("Remove this line and implement your code here!");
+//        if (evt.getClickCount() == 2) {
+//            ChatBox chatBox = new ChatBox(this, false);
+//            chatBox.setUsername(lstClients.getSelectedValue().toString());
+//            chatBox.setVisible(true);
+//        }
 //    }//GEN-LAST:event_lstClientsMouseClicked
 //
 //    ServerThread serverThread = null;
+//
 //    /**
 //     * @param args the command line arguments
 //     */

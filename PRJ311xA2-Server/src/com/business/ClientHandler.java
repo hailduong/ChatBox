@@ -8,7 +8,6 @@ import java.io.DataOutputStream;
 import java.net.Socket;
 import javax.swing.JTextArea;
 
-
 public class ClientHandler implements Runnable {
 
     private DataInputStream dis;

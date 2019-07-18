@@ -7,6 +7,7 @@ package com.business;
 
 import com.entity.Client;
 import com.entity.Server;
+import com.ui.ServerBox;
 //import com.ui.ServerBox;
 //import com.ui.ServerBox;
 
@@ -52,7 +53,7 @@ public class ServerThread implements Runnable {
                     client.setUsername(username);
                     client.setSocket(socket);
 
-//                    ServerBox.clients.addElement(client);
+                    ServerBox.clients.addElement(client);
 
                     ClientHandler clientHandler = new ClientHandler(socket, client);
                     clients.put(username, clientHandler);

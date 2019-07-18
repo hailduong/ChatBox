@@ -18,6 +18,14 @@ public class ClientHandler implements Runnable {
 
     /*provide the setter and getter here*/
 
+    public void setTxtContent(JTextArea txtContent) {
+        this.txtContent = txtContent;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
     public ClientHandler(Socket socket) {
         this.socket = socket;
 

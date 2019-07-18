@@ -9,17 +9,19 @@ import com.business.ClientHandler;
 import com.business.ServerThread;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * @author TrongDuyDao
  */
-public class ChatBox extends JDialog{
+public class ChatBox extends JDialog {
 
     /**
      * Creates new form ChatBox
      */
-    private ClientHandler cs;
-//    private ServerBox server;
+    private ClientHandler clientHandler;
+    //    private ServerBox server;
     private String username;
     private JTextArea chatArea;
     private JPanel chatPanel;
@@ -37,21 +39,25 @@ public class ChatBox extends JDialog{
         this.pack();
         this.setVisible(true);
 
+        sendButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    clientHandler.send(chatField.getText());
+                } catch (Exception ex) {
+                    System.out.println(ex);
+                }
+            }
+        });
     }
 
     public void setUsername(String username) {
         this.username = username;
-        cs = ServerThread.clients.get(username);
-//        cs.setTxtContent(txtContent);
-        new Thread(cs).start();
-//        setTitle("Chat with " + cs.getClient().getUsername());
-    }
+        clientHandler = ServerThread.clients.get(username);
 
-    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-//            cs.send(txtMessage.getText());
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+        clientHandler.setTxtContent(chatArea);
+
+        new Thread(clientHandler).start();
+        setTitle("Chat with " + username);
     }
 }

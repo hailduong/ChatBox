@@ -74,6 +74,7 @@ public class ClientBox {
     }
 
     public static void main(String args[]) {
+        // Init UI
         JFrame frame = new JFrame("Client Chat Box");
         frame.setContentPane(new ClientBox().ClientBoxPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

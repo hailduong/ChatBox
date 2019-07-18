@@ -19,17 +19,33 @@ import java.awt.event.MouseEvent;
  */
 public class ServerBox extends javax.swing.JFrame {
 
-    //list of all clients connected to server
+    // List of all clients connected to server
     public static DefaultListModel<Client> clients = new DefaultListModel<>();
     public final String SERVER_NAME = "localhost";
     public final int PORT = 1234;
+
     private JPanel serverBoxPanel;
     private JList serverNameList;
     private ServerThread serverThread = null;
 
+    public static void main(String args[]) {
+        initUI();
+    }
+
+    private static void initUI() {
+        JFrame frame = new JFrame("Server User List");
+        frame.setContentPane(new ServerBox().serverBoxPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
     public ServerBox() {
+
+        // Set the list of connected users.
         serverNameList.setModel(clients);
 
+        // Start server thread
         if (serverThread == null) {
             try {
                 Server server = new Server(SERVER_NAME, PORT);
@@ -40,15 +56,18 @@ public class ServerBox extends javax.swing.JFrame {
             }
         }
 
-
+        // Bind the double click event, init the chat box for the selected user.
         serverNameList.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
 
                 if (e.getClickCount() == 2) {
+                    // Init chat box
                     ChatBox chatBox = new ChatBox();
-                    chatBox.setUsername(serverNameList.getSelectedValue().toString());
+                    String selectedValue = serverNameList.getSelectedValue().toString();
+                    // Set user name
+                    chatBox.setUsername(selectedValue);
                     chatBox.setVisible(true);
                 }
 
@@ -56,11 +75,5 @@ public class ServerBox extends javax.swing.JFrame {
         });
     }
 
-    public static void main(String args[]) {
-        JFrame frame = new JFrame("Server User List");
-        frame.setContentPane(new ServerBox().serverBoxPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
+
 }

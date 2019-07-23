@@ -78,6 +78,7 @@ public class ClientBox {
         JFrame frame = new JFrame("Client Chat Box");
         frame.setContentPane(new ClientBox().ClientBoxPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setMinimumSize(new Dimension(550, 300));
         frame.pack();
         frame.setVisible(true);
     }

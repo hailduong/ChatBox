@@ -15,9 +15,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import javax.swing.JTextArea;
 
-/**
- * @author TrongDuyDao
- */
 public class ClientThread implements Runnable, Serializable {
 
     //for I/O

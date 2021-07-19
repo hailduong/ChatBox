@@ -12,9 +12,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * @author TrongDuyDao
- */
 public class ChatBox extends JDialog {
 
     /**
@@ -43,7 +40,11 @@ public class ChatBox extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    // Send the message
                     clientHandler.send(chatField.getText());
+
+                    // Clear the message after sending
+                    chatField.setText("");
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }

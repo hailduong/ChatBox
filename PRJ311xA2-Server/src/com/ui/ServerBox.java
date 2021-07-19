@@ -14,9 +14,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-/**
- * @author TrongDuyDao
- */
 public class ServerBox extends javax.swing.JFrame {
 
     // List of all clients connected to server

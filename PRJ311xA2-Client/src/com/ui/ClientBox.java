@@ -45,7 +45,7 @@ public class ClientBox {
                         thread.start();
 
                         // Inform when the client is connected to the server
-                        clientThread.send(":" + client.getUsername());
+                        clientThread.send(client.getUsername());
                         statusLabel.setText("Connected to server!");
                         connectButton.setEnabled(false);
 
@@ -66,6 +66,9 @@ public class ClientBox {
                     // Send the message
                     String message = "Me: " + chatBoxField.getText();
                     clientThread.send(message);
+
+                    // Clear the input box
+                    chatBoxField.setText("");
                 } catch (Exception ex) {
                     Logger.getLogger(ClientBox.class.getName()).log(Level.SEVERE, null, ex);
                 }

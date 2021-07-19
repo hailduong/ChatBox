@@ -18,9 +18,6 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * @author TrongDuyDao
- */
 public class ServerThread implements Runnable {
 
 

@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="PRJ311x_0101_FX_VN_A2:war exploded">
+    <output-path>$PROJECT_DIR$/target/${project.artifactId}-${project.version}</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>PRJ311x_0101_FX_VN_A2</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="PRJ311x_0101_FX_VN_A2" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/${project.artifactId}-${project.version}/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="PRJ311x_0101_FX_VN_A2/web/Web" />
+    </root>
+  </artifact>
+</component>

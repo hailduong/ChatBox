@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="PRJ311x_0101_FX_VN_A2:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>PRJ311x_0101_FX_VN_A2</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="${project.artifactId}-${project.version}.war">
+      <element id="artifact" artifact-name="PRJ311x_0101_FX_VN_A2:war exploded" />
+    </root>
+  </artifact>
+</component>

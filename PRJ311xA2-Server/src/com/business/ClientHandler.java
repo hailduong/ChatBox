@@ -1,7 +1,9 @@
 
 package com.business;
 
+import com.DAO.MessageDAO;
 import com.entity.Client;
+import com.model.MessageDetail;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -15,8 +17,6 @@ public class ClientHandler implements Runnable {
     private Socket socket;
     private Client client;
     private JTextArea txtContent;
-
-    /*provide the setter and getter here*/
 
     public void setTxtContent(JTextArea txtContent) {
         this.txtContent = txtContent;
@@ -52,9 +52,13 @@ public class ClientHandler implements Runnable {
 
             // Get user name and message
             while (true) {
-                Object line = dis.readUTF();
-                if (line != null) {
-                    txtContent.append("\n" + client.getUsername() + ": " + line);
+                Object message = dis.readUTF();
+                if (message != null) {
+                    txtContent.append("\n" + client.getUsername() + ": " + message);
+
+                    // Save message to DB
+                    MessageDetail messageDetail = new MessageDetail(client.getUsername(), "server", message.toString(), MessageDAO.EMessageType.MESSAGE.toString());
+                    MessageDAO.getInstance().addMessageDetail(messageDetail);
                 }
             }
 
@@ -64,13 +68,13 @@ public class ClientHandler implements Runnable {
     }
 
     // Send the message to Client
-    public void send(Object line) throws Exception {
+    public void send(Object message) throws Exception {
 
         // Send to the client
-        dos.writeUTF("Server:" + line.toString());
+        dos.writeUTF("Server:" + message.toString());
 
         // Add message to the text area
-        txtContent.append("\nMe:" + line);
+        txtContent.append("\nMe:" + message);
     }
 
 }

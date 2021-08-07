@@ -12,7 +12,7 @@ public class DBContext {
     private final String password = "";
 
     public Connection getConnection() throws Exception {
-        String url = "jdbc:mariadb://" + serverName + ":" + port + "/" + dbName;
+        String url = "jdbc:mysql://" + serverName + ":" + port + "/" + dbName;
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = DriverManager.getConnection(url, userId, password);
         return connection;

@@ -5,8 +5,10 @@
  */
 package com.ui;
 
+import com.DAO.MessageDAO;
 import com.business.ClientHandler;
 import com.business.ServerThread;
+import com.model.MessageDetail;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -41,10 +43,16 @@ public class ChatBox extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 try {
                     // Send the message
-                    clientHandler.send(chatField.getText());
+                    String message = chatField.getText();
+                    clientHandler.send(message);
 
                     // Clear the message after sending
                     chatField.setText("");
+
+                    // Save message to DB
+                    MessageDetail messageDetail = new MessageDetail("server", username, message, MessageDAO.EMessageType.MESSAGE.toString());
+                    MessageDAO.getInstance().addMessageDetail(messageDetail);
+
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }

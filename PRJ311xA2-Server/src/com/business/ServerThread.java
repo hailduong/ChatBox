@@ -45,16 +45,13 @@ public class ServerThread implements Runnable {
                 String username = dis.readUTF();
                 Client client = new Client();
 
-                if (username != null) {
+                client.setUsername(username);
+                client.setSocket(socket);
 
-                    client.setUsername(username);
-                    client.setSocket(socket);
+                ServerBox.clients.addElement(client);
 
-                    ServerBox.clients.addElement(client);
-
-                    ClientHandler clientHandler = new ClientHandler(socket, client);
-                    clients.put(username, clientHandler);
-                }
+                ClientHandler clientHandler = new ClientHandler(socket, client);
+                clients.put(username, clientHandler);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -1,8 +1,10 @@
 package com.ui;
 
+import com.DAO.UserDAO;
 import com.business.ClientThread;
 import com.entity.Client;
 import com.entity.Server;
+import com.model.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,8 +38,9 @@ public class ClientBox {
                     try {
 
                         // Init the `Client` entity and `Server` entity
+                        String userName = userNameTextField.getText();
                         Client client = new Client(userNameTextField.getText(), "");
-                        Server server = new Server(hostIPTextField.getText(), Integer.valueOf(portTextField.getText()));
+                        Server server = new Server(hostIPTextField.getText(), Integer.parseInt(portTextField.getText()));
 
                         // Open a socket and connect to server, with a thread
                         clientThread = new ClientThread(server, chatArea);
@@ -48,6 +51,10 @@ public class ClientBox {
                         clientThread.send(client.getUsername());
                         statusLabel.setText("Connected to server!");
                         connectButton.setEnabled(false);
+
+                        // Add user to db
+                        User user = new User(userName, userName);
+                        UserDAO.getInstance().addUser(user);
 
                     } catch (Exception ex) {
                         ex.printStackTrace();

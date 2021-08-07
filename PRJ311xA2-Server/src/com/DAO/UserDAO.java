@@ -10,6 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
+    static UserDAO instance;
+
+    public static UserDAO getInstance() {
+        if (instance == null) instance = new UserDAO();
+        return instance;
+    }
+
     public List<User> getAll() throws Exception {
         // Query data
         String selectQuery = "SELECT * FROM User";

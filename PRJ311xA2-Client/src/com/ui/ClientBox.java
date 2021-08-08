@@ -1,15 +1,18 @@
 package com.ui;
 
+import com.DAO.MessageDAO;
 import com.DAO.UserDAO;
 import com.business.ClientThread;
 import com.entity.Client;
 import com.entity.Server;
+import com.model.MessageDetail;
 import com.model.User;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -56,6 +59,14 @@ public class ClientBox {
                         User user = new User(userName, userName);
                         UserDAO.getInstance().addUser(user);
 
+                        // Get chat history
+                        List<MessageDetail> messageDetailList = MessageDAO.getInstance().getAllMessagesForUser(userName);
+                        for (MessageDetail messageDetail : messageDetailList) {
+                            String fromUser = messageDetail.fromUser;
+                            String messageContent = messageDetail.content;
+                            chatArea.append("\n" + fromUser + ": " + messageContent);
+                        }
+
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
@@ -71,7 +82,7 @@ public class ClientBox {
             public void actionPerformed(ActionEvent e) {
                 try {
                     // Send the message
-                    String message = "Me: " + chatBoxField.getText();
+                    String message = chatBoxField.getText();
                     clientThread.send(message);
 
                     // Clear the input box

@@ -17,4 +17,11 @@ public class MessageDetail {
         this.messageType = messageType;
         this.dateCreated = new Date();
     }
+    public MessageDetail(String fromUser, String toUser, String content, String messageType, Date dateCreated) {
+        this.fromUser = fromUser;
+        this.toUser = toUser;
+        this.content = content;
+        this.messageType = messageType;
+        this.dateCreated = dateCreated;
+    }
 }
